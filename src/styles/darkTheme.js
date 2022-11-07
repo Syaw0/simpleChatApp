@@ -1,0 +1,77 @@
+import { createTheme } from './@stitches.config';
+
+export default createTheme('darkTheme', {
+
+  colors: {
+    onBg: 'rgba(27, 27, 293 ,1)',
+    onBg100: 'rgba(27, 27, 293  ,0.1)',
+    onBg200: 'rgba(27, 27, 293 ,0.2)',
+    onBg300: 'rgba(27, 27, 293  ,0.3)',
+    onBg400: 'rgba(27, 27, 293 ,0.4)',
+    onBg500: 'rgba(27, 27, 293 ,0.5)',
+    onBg600: 'rgba(27, 27, 293 ,0.6)',
+    onBg700: 'rgba(27, 27, 293 ,0.7)',
+    onBg800: 'rgba(27, 27, 293 ,0.8)',
+    onBg900: 'rgba(27, 27, 293 ,0.9)',
+
+    bg: 'rgba(228, 226, 227 ,1)',
+    bg100: 'rgba(228, 226, 227 ,0.1)',
+    bg200: 'rgba(228, 226, 227 ,0.2)',
+    bg300: 'rgba(228, 226, 227 ,0.3)',
+    bg400: 'rgba(228, 226, 227 ,0.4)',
+    bg500: 'rgba(228, 226, 227 ,0.5)',
+    bg600: 'rgba(228, 226, 227 ,0.6)',
+    bg700: 'rgba(228, 226, 227 ,0.7)',
+    bg800: 'rgba(228, 226, 227 ,0.8)',
+    bg900: 'rgba(228, 226, 227 ,0.9)',
+
+    primary: 'rgba(179, 200, 230,1)',
+    primary100: 'rgba(179, 200, 230,0.1)',
+    primary200: 'rgba(179, 200, 230,0.2)',
+    primary300: 'rgba(179, 200, 230,0.3)',
+    primary400: 'rgba(179, 200, 230,0.4)',
+    primary500: 'rgba(179, 200, 230,0.5)',
+    primary600: 'rgba(179, 200, 230,0.6)',
+    primary700: 'rgba(179, 200, 230,0.7)',
+    primary800: 'rgba(179, 200, 230,0.8)',
+    primary900: 'rgba(179, 200, 230,0.9)',
+
+    onPrimary: 'rgba(28, 50, 73)',
+    onPrimary100: 'rgba(28, 50, 73,0.1)',
+    onPrimary200: 'rgba(28, 50, 73,0.2)',
+    onPrimary300: 'rgba(28, 50, 73,0.3)',
+    onPrimary400: 'rgba(28, 50, 73,0.4)',
+    onPrimary500: 'rgba(28, 50, 73,0.5)',
+    onPrimary600: 'rgba(28, 50, 73,0.6)',
+    onPrimary700: 'rgba(28, 50, 73,0.7)',
+    onPrimary800: 'rgba(28, 50, 73,0.8)',
+    onPrimary900: 'rgba(28, 50, 73,0.9)',
+
+    secondary: 'rgba(195, 198, 207,1)',
+    secondary100: 'rgba(195, 198, 207,0.1)',
+    secondary200: 'rgba(195, 198, 207,0.2)',
+    secondary300: 'rgba(195, 198, 207,0.3)',
+    secondary400: 'rgba(195, 198, 207,0.4)',
+    secondary500: 'rgba(195, 198, 207,0.5)',
+    secondary600: 'rgba(195, 198, 207,0.6)',
+    secondary700: 'rgba(195, 198, 207,0.7)',
+    secondary800: 'rgba(195, 198, 207,0.8)',
+    secondary900: 'rgba(195, 198, 207,0.9)',
+
+    onSecondary: 'rgba(44, 49, 55,1)',
+    onSecondary100: 'rgba(44, 49, 55,0.1)',
+    onSecondary200: 'rgba(44, 49, 55,0.2)',
+    onSecondary300: 'rgba(44, 49, 55,0.3)',
+    onSecondary400: 'rgba(44, 49, 55,0.4)',
+    onSecondary500: 'rgba(44, 49, 55,0.5)',
+    onSecondary600: 'rgba(44, 49, 55,0.6)',
+    onSecondary700: 'rgba(44, 49, 55,0.7)',
+    onSecondary800: 'rgba(44, 49, 55,0.8)',
+    onSecondary900: 'rgba(44, 49, 55,0.9)',
+
+    error: 'rgba(186, 26, 26,1)',
+    onError: 'rgba(255,255,255,1)',
+
+  },
+
+});

@@ -1,20 +1,19 @@
-/* eslint-disable no-await-in-loop */
 const express = require('express');
 const path = require('path');
 const bp = require('body-parser');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
-const fs = require('fs');
 
 const app = express();
 
 app.use(bp.json({ limit: '500mg' }));
-app.use(bp.urlencoded({ extended: true, limit: '500mg', parameterLimit: '6000000' }));
+app.use(bp.urlencoded({ extended: true, limit: '500mg', parameterLimit: '5000000' }));
+
 app.use(cors({
   origin: '*',
   optionsSuccessStatus: '204',
   allowedHeaders: '*',
-  methods: ['POST', 'GET', 'OPTIONS'],
+  methods: ['POST', 'GET', 'PUT', 'OPTIONS', 'DELETE'],
   preflightContinue: false,
 }));
 
@@ -37,3 +36,5 @@ app.get('*', (req, res) => {
 
 app.listen(8080, () => {
 });
+
+module.exports = app;

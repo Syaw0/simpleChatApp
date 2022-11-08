@@ -92,6 +92,7 @@ export const {
       playfairDisplay: 'Playfair Display',
     },
     fontSizes: {
+      logo: '50px',
       headline1: '36px',
       headline2: '32px',
       headline3: '28px',
@@ -133,6 +134,14 @@ export const {
       13: '102px',
       14: '110px',
       15: '120px',
+      16: '130px',
+      17: '140px',
+      18: '150px',
+      19: '160px',
+      20: '170px',
+      21: '180px',
+      22: '190px',
+      23: '200px',
     },
     transitions: {
       coAndBg: 'color 0.5s , background-color 0.5s , fill 0.5s',
@@ -152,8 +161,16 @@ export const {
   },
 
   utils: {
+    logo: (weight) => ({
+      fontFamily: '$playfairDisplay',
+      fontWeight: weight,
+      fontSize: '$logo',
+      lineHeight: '$headline1',
+      fontStyle: 'italic',
+    }),
+
     headline1: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$headline1',
       lineHeight: '$headline1',
@@ -166,7 +183,7 @@ export const {
     }),
 
     headline2: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$headline2',
       lineHeight: '$headline2',
@@ -179,7 +196,7 @@ export const {
     }),
 
     headline3: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$headline3',
       lineHeight: '$headline3',
@@ -192,7 +209,7 @@ export const {
     }),
 
     headline4: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$headline4',
       lineHeight: '$headline4',
@@ -205,7 +222,7 @@ export const {
     }),
 
     headline5: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$headline5',
       lineHeight: '$headline5',
@@ -218,7 +235,7 @@ export const {
     }),
 
     headline6: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$headline6',
       lineHeight: '$headline6',
@@ -230,8 +247,13 @@ export const {
       fontStyle: 'italic',
     }),
 
+    subhead1_i: (weight) => ({
+      subhead1: weight,
+      fontStyle: 'italic',
+    }),
+
     subhead1: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$subhead1',
       lineHeight: '$subhead1',
@@ -240,7 +262,7 @@ export const {
     }),
 
     subhead2: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$subhead2',
       lineHeight: '$subhead2',
@@ -253,7 +275,7 @@ export const {
     }),
 
     subhead3: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$subhead3',
       lineHeight: '$subhead3',
@@ -267,7 +289,7 @@ export const {
     }),
 
     button: (weight) => ({
-      fontFamily: '$josef',
+      fontFamily: '$barlow',
       fontWeight: weight,
       fontSize: '$button',
       lineHeight: '$button',

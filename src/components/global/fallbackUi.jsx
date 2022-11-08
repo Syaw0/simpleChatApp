@@ -4,7 +4,6 @@
 import React from 'react';
 import Flex from '../../styles/styledComponents/flex';
 import Text from '../../styles/styledComponents/text';
-import IcoWarn from '../../assest/icons/IcoWarm';
 import mainStore from '../../store/mainStore';
 
 function FallbackUi({ handleErrorState }) {
@@ -45,7 +44,7 @@ function FallbackUi({ handleErrorState }) {
           },
         }}
         >
-          <IcoWarn height="45" width="45" />
+          
           <Text>Internal Error</Text>
         </Flex>
 

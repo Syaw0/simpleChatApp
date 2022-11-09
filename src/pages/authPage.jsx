@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React, { useState } from 'react';
 import Flex from '../styles/styledComponents/flex';
 import Text from '../styles/styledComponents/text';
@@ -6,11 +7,16 @@ import PrimaryButton from '../components/global/primaryButton';
 import ShadowButton from '../components/global/shadowButton';
 import SuccessMessage from '../components/global/successMessage';
 import ErrorMessage from '../components/global/ErrorMessage';
+import signup from '../utility/signup';
+import login from '../utility/login';
+import mainStore from '../store/mainStore';
 
 function AuthPage() {
   const [inputValues, setInputValues] = useState({ username: '', password: '' });
   const [waiting, setWaiting] = useState(false);
   const [fromType, setFromType] = useState('signup');
+  const [message, setMessage] = useState({ type: '', msg: '' });
+  const setLoginStatus = mainStore((state) => state.setLoginStatus);
 
   const usernameInputChange = (e) => {
     const { value } = e.target;
@@ -22,13 +28,42 @@ function AuthPage() {
     setInputValues((state) => ({ ...state, password: value }));
   };
 
-  const clickOnSignup = () => {
+  const clickOnSignup = async () => {
     setWaiting(true);
-    // set request
+    if (checkInputs()) {
+      const result = await signup(inputValues);
+      if (result.status) {
+        setMessage({ type: 'success', msg: result.msg });
+        setTimeout(() => { setLoginStatus(true); setWaiting(false); }, 2000);
+      } else {
+        setMessage({ type: 'error', msg: result.msg });
+        setWaiting(false);
+      }
+    }
   };
 
-  const clickOnLogin = () => {
+  const clickOnLogin = async () => {
     setWaiting(true);
+    if (checkInputs()) {
+      const result = await login(inputValues);
+      if (result.status) {
+        setMessage({ type: 'success', msg: result.msg });
+        setTimeout(() => { setLoginStatus(true); setWaiting(false); }, 2000);
+      } else {
+        setMessage({ type: 'error', msg: result.msg });
+        setWaiting(false);
+      }
+    }
+  };
+
+  const checkInputs = () => {
+    if (inputValues.username.trim() === '' || inputValues.password.trim() === '') {
+      setMessage({ type: 'error', msg: 'Inputs must have value' });
+      setWaiting(false);
+      return false;
+    }
+    setMessage({});
+    return true;
   };
 
   const clickOnChangeForm = () => {
@@ -58,7 +93,7 @@ function AuthPage() {
       <Text css={{
         logo: '600',
         color: '$onBg',
-        padding: '$3 0',
+        padding: '0 0 $2 0',
         borderBottom: '1px solid $onBg300',
         width: '100%',
         textAlign: 'center',
@@ -146,6 +181,9 @@ function AuthPage() {
           {fromType === 'signup' ? ' Already have account?' : ' Create a new account!'}
 
         </ShadowButton>
+
+        {message.type === 'success' && <SuccessMessage>{message.msg}</SuccessMessage> }
+        {message.type === 'error' && <ErrorMessage>{message.msg}</ErrorMessage> }
 
       </Flex>
 

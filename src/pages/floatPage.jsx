@@ -3,6 +3,10 @@ import IcoArrowBack from '../assest/icons/IcoArrowBack';
 import AddContact from '../components/floatPage/addContact';
 import ContactsList from '../components/floatPage/contactsList';
 import Profile from '../components/floatPage/profile';
+import Setting from '../components/floatPage/setting';
+import Assurance from '../components/floatPage/setting/assurance';
+import ProfileChangeInput from '../components/floatPage/setting/profileChangeInput';
+import ProfileSetting from '../components/floatPage/setting/profileSetting';
 import Loader from '../components/global/loader';
 import Flex from '../styles/styledComponents/flex';
 import Text from '../styles/styledComponents/text';
@@ -10,7 +14,7 @@ import Text from '../styles/styledComponents/text';
 function FloatPage() {
   const [isLoad, setIsLoad] = useState(false);
   const [permissionForBackward, setPermissionForBackward] = useState(true);
-  const [currentFloat, setCurrentFloat] = useState('profile');
+  const [currentFloat, setCurrentFloat] = useState('setting');
 
   const switchPermissionForBackward = (permission) => {
     setPermissionForBackward(permission);
@@ -38,6 +42,10 @@ function FloatPage() {
         css={{
           width: '450px',
           height: '75%',
+          '@bp4': {
+            width: '100%',
+            height: '100%',
+          },
           position: 'absolute',
           left: '50%',
           top: '50%',
@@ -80,7 +88,17 @@ function FloatPage() {
         </Flex>
         )}
 
-        <Profile backwardCallback={goBack} />
+        {/* <Profile backwardCallback={goBack} /> */}
+        <Setting />
+        {/* <Assurance /> */}
+        {/* <ProfileSetting /> */}
+        {/* <ProfileChangeInput
+          title="id"
+          value="syaw0"
+          info="choose your username uniq
+           , you can not use  symbols  , just number and english letters"
+
+        /> */}
         {/* <AddContact switchPermissionForBackward={switchPermissionForBackward} /> */}
       </Flex>
     </Flex>

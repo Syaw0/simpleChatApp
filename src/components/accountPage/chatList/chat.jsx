@@ -1,12 +1,26 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
+import mainStore from '../../../store/mainStore';
 import Flex from '../../../styles/styledComponents/flex';
 import Text from '../../../styles/styledComponents/text';
 import Avatar from '../../global/avatar';
 
-function Chat() {
+function Chat({
+  lastChat, avatarImg, name, newMessage, id,
+}) {
+  const { chats } = mainStore((state) => state.Db);
+  const setCurrentUserChat = mainStore((state) => state.setCurrentUserChat);
+
+  const clickOnChatCallback = (e) => {
+    const target = e.currentTarget.id;
+    const result = chats.find((chat) => chat.targetId.id === target);
+    setCurrentUserChat(result);
+  };
+
   return (
     <Flex
-      onClick={() => {}}
+      id={id}
+      onClick={clickOnChatCallback}
       css={{
         padding: '$1 0',
         borderBottom: '1px solid $onBg100',
@@ -20,12 +34,15 @@ function Chat() {
 
       <Flex css={{
         width: '20%',
+        '@bp2': {
+          width: 'fit-content',
+        },
       }}
       >
         <Avatar
           width="50px"
           height="50px"
-          src="https://cdn.searchenginejournal.com/wp-content/uploads/2022/04/reverse-image-search-627b7e49986b0-sej-760x400.png"
+          src={avatarImg}
         />
       </Flex>
 
@@ -35,6 +52,10 @@ function Chat() {
 
           width: '85%',
           padding: '0 $1',
+          '@bp2': {
+            width: '100%',
+
+          },
         }}
       >
 
@@ -48,7 +69,7 @@ function Chat() {
             width: '85%',
           }}
           >
-            Siavash
+            {name}
 
           </Text>
 
@@ -57,7 +78,7 @@ function Chat() {
             color: '$onBg800',
           }}
           >
-            19:23
+            {lastChat.date}
 
           </Text>
         </Flex>
@@ -72,9 +93,10 @@ function Chat() {
             width: '85%',
           }}
           >
-            something new in here have to be heared
+            {lastChat.value}
 
           </Text>
+          {newMessage.length !== 0 && (
           <Text css={{
             width: '25px',
             height: '22px',
@@ -86,9 +108,10 @@ function Chat() {
 
           }}
           >
-            4
+            {newMessage.length}
 
           </Text>
+          )}
         </Flex>
 
       </Flex>

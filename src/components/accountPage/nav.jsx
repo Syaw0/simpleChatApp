@@ -1,11 +1,17 @@
 import React from 'react';
 import IcoContacts from '../../assest/icons/IcoContacts';
 import IcoSetting from '../../assest/icons/IcoSetting';
+import mainStore from '../../store/mainStore';
 import Flex from '../../styles/styledComponents/flex';
 import Text from '../../styles/styledComponents/text';
 import Avatar from '../global/avatar';
 
 function Nav() {
+
+  const avatarImg = mainStore(state=>state.Db.mySelf.avatarImg)
+
+
+
   return (
     <Flex
       css={{
@@ -49,7 +55,7 @@ function Nav() {
         <Avatar
           width="50px"
           height="50px"
-          src="https://cdn.searchenginejournal.com/wp-content/uploads/2022/04/reverse-image-search-627b7e49986b0-sej-760x400.png"
+          src={avatarImg}
           onclick={() => {}}
         />
       </Flex>

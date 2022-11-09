@@ -4,7 +4,9 @@ import IcoMsgStatus1 from '../../../assest/icons/IcoMsgStatus1';
 import Flex from '../../../styles/styledComponents/flex';
 import Text from '../../../styles/styledComponents/text';
 
-function Message({ type }) {
+function Message({
+  type, value, date, status,
+}) {
   return (
     <Flex justify={type === 'myself' ? 'start' : 'end'}>
       <Flex
@@ -24,7 +26,7 @@ function Message({ type }) {
           color: type === 'myself' ? '$onPrimary' : '$onSecondary',
         }}
         >
-          Msg
+          {value}
         </Text>
 
         <Flex
@@ -46,7 +48,7 @@ function Message({ type }) {
             color: type === 'myself' ? '$onPrimary700' : '$onSecondary700',
           }}
           >
-            19:22
+            {date}
           </Text>
 
           {type === 'myself' && <IcoMsgStatus1 />}

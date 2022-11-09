@@ -47,6 +47,7 @@ function ChatInput() {
           border: 'none',
           subhead1: '500',
           padding: '5px',
+          backgroundColor: 'transparent',
           '&:focus': {
             border: 'none',
             outline: 'none',

@@ -3,9 +3,10 @@ import React from 'react';
 import Flex from '../../../styles/styledComponents/flex';
 import Text from '../../../styles/styledComponents/text';
 
-function Id({ id }) {
+function Id({ id, onclick }) {
   return (
     <Flex
+      onClick={onclick}
       dir="column"
       css={{
       }}

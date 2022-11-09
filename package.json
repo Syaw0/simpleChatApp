@@ -8,9 +8,9 @@
     "server": "nodemon ./server/server.js",
     "build": "vite build",
     "test": "jest --verbose --watchAll",
-    "cypress:open":"npx cypress open" ,
-    "cypress:run":"npx cypress run" ,
-    "cypress:component":"npx cypress run --component"
+    "cypress:open": "npx cypress open",
+    "cypress:run": "npx cypress run",
+    "cypress:component": "npx cypress run --component"
   },
   "keywords": [],
   "author": "",
@@ -38,11 +38,14 @@
   "dependencies": {
     "@stitches/react": "^1.2.8",
     "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "express": "^4.18.1",
     "express-fileupload": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "ws": "^8.11.0",
     "zustand": "^4.0.0"
   },
   "proxy": "http://localhost:8080"

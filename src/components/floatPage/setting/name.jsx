@@ -3,10 +3,10 @@ import React from 'react';
 import Flex from '../../../styles/styledComponents/flex';
 import Text from '../../../styles/styledComponents/text';
 
-function Biography({ bio, onclick }) {
+function Name({ name, onclick }) {
   return (
     <Flex
-      onclick={onclick}
+      onClick={onclick}
       dir="column"
       css={{
       }}
@@ -19,7 +19,7 @@ function Biography({ bio, onclick }) {
         padding: '2px 0',
       }}
       >
-        biography
+        name
       </Text>
       <Text css={{
         color: '$onBg',
@@ -28,10 +28,10 @@ function Biography({ bio, onclick }) {
         cursor: 'pointer',
       }}
       >
-        {bio}
+        {name}
       </Text>
     </Flex>
   );
 }
 
-export default Biography;
+export default Name;

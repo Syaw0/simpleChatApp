@@ -4,13 +4,12 @@ import IcoSetting from '../../assest/icons/IcoSetting';
 import mainStore from '../../store/mainStore';
 import Flex from '../../styles/styledComponents/flex';
 import Text from '../../styles/styledComponents/text';
+import handleOpeningFloat from '../../utility/floatPage/handleOpeningFloat';
 import Avatar from '../global/avatar';
 
 function Nav() {
-
-  const avatarImg = mainStore(state=>state.Db.mySelf.avatarImg)
-
-
+  const Db = mainStore((state) => state.Db);
+  const setCurrentProfile = mainStore((state) => state.setCurrentProfile);
 
   return (
     <Flex
@@ -49,14 +48,18 @@ function Nav() {
         }}
       >
 
-        <IcoSetting />
-        <IcoContacts />
+        <IcoSetting id="Setting" onclick={handleOpeningFloat} />
+        <IcoContacts id="Contact" onclick={handleOpeningFloat} />
 
         <Avatar
+          id="navAvatar"
           width="50px"
           height="50px"
-          src={avatarImg}
-          onclick={() => {}}
+          src={Db.mySelf.avatarImg}
+          onclick={(e) => {
+            handleOpeningFloat(e);
+            setCurrentProfile(Db.mySelf);
+          }}
         />
       </Flex>
 

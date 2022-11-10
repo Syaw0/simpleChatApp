@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ChatEnv from '../components/accountPage/chatEnv';
 import ChatList from '../components/accountPage/chatList';
 import Nav from '../components/accountPage/nav';
@@ -10,16 +10,15 @@ import Text from '../styles/styledComponents/text';
 import openingSocket from '../utility/socket/openingSocket';
 
 function AccountPage() {
-  const isDataLoaded = mainStore(state=>state.isDataLoaded)
-  
+  const isDataLoaded = mainStore((state) => state.isDataLoaded);
+
   useEffect(() => {
     console.log('hello im here im ready to fetch data and open socket');
     openSocketAndGetData();
   }, []);
 
   const openSocketAndGetData = async () => {
-    const result = await openingSocket();
-    console.log(result);
+    await openingSocket();
   };
 
   return (

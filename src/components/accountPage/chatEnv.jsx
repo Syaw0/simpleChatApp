@@ -8,6 +8,7 @@ import Info from './chatEnv/info';
 
 function ChatEnv() {
   const currentUserChat = mainStore((state) => state.currentUserChat);
+  const currentRenderedComponent = mainStore((state) => state.currentRenderedComponent);
   return (
     <Flex
       css={{
@@ -15,7 +16,7 @@ function ChatEnv() {
         borderLeft: '1px solid $onBg300 ',
         padding: '$2 $2 0 $2',
         '@bp2': {
-          // display:"none",
+          display: currentRenderedComponent === 'chatList' ? 'none' : 'flex',
           width: '100%',
           borderLeft: 'none',
           padding: '0',

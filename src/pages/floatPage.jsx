@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import IcoArrowBack from '../assest/icons/IcoArrowBack';
 import AddContact from '../components/floatPage/addContact';
@@ -8,13 +9,18 @@ import Assurance from '../components/floatPage/setting/assurance';
 import ProfileChangeInput from '../components/floatPage/setting/profileChangeInput';
 import ProfileSetting from '../components/floatPage/setting/profileSetting';
 import Loader from '../components/global/loader';
+import mainStore from '../store/mainStore';
 import Flex from '../styles/styledComponents/flex';
 import Text from '../styles/styledComponents/text';
+import handleOpeningFloat from '../utility/floatPage/handleOpeningFloat';
 
 function FloatPage() {
   const [isLoad, setIsLoad] = useState(false);
   const [permissionForBackward, setPermissionForBackward] = useState(true);
-  const [currentFloat, setCurrentFloat] = useState('setting');
+  const whichFloatComponent = mainStore((state) => state.whichFloatComponent);
+  const floatTitle = mainStore((state) => state.floatTitle);
+  const breadFloat = mainStore((state) => state.breadFloat);
+  const Db = mainStore((state) => state.Db);
 
   const switchPermissionForBackward = (permission) => {
     setPermissionForBackward(permission);
@@ -22,7 +28,11 @@ function FloatPage() {
 
   const goBack = (e) => {
     if (permissionForBackward) {
-      console.log('backward');
+      if (breadFloat.length === 1) {
+        handleOpeningFloat(breadFloat[breadFloat.length - 2], true, true);
+        return;
+      }
+      handleOpeningFloat(breadFloat[breadFloat.length - 2], true);
     }
   };
 
@@ -53,13 +63,13 @@ function FloatPage() {
           backgroundColor: 'White',
           borderRadius: '10px',
           boxShadow: '$8dp',
-          padding: currentFloat === 'profile' ? '0' : '$1 $3',
+          padding: whichFloatComponent === 'profile' ? '0' : '$1 $3',
           overflowY: 'auto',
         }}
       >
         {isLoad && <Loader />}
 
-        {currentFloat !== 'profile' && (
+        {floatTitle !== 'profile' && (
         <Flex
           justify="between"
           align="center"
@@ -82,24 +92,46 @@ function FloatPage() {
             color: '$onBg900',
           }}
           >
-            Contacts
+            {floatTitle}
           </Text>
           <IcoArrowBack onclick={goBack} />
         </Flex>
         )}
 
-        {/* <Profile backwardCallback={goBack} /> */}
-        <Setting />
-        {/* <Assurance /> */}
-        {/* <ProfileSetting /> */}
-        {/* <ProfileChangeInput
+        {whichFloatComponent === 'Setting' && <Setting />}
+        {whichFloatComponent === 'Contact' && <ContactsList />}
+        {whichFloatComponent === 'addContact' && <AddContact />}
+        {whichFloatComponent === 'chatAvatar' && <Profile backwardCallback={goBack} />}
+        {whichFloatComponent === 'navAvatar' && <Profile backwardCallback={goBack} />}
+        {whichFloatComponent === 'assurance' && <Assurance />}
+        {whichFloatComponent === 'profileSetting' && <ProfileSetting />}
+
+        {whichFloatComponent === 'changeName' && (
+        <ProfileChangeInput
+          permissionForBackward={switchPermissionForBackward}
+          title="name"
+          value={Db.mySelf.name}
+          info="enter an optional name for your profile"
+        />
+        )}
+        {whichFloatComponent === 'changeBio' && (
+        <ProfileChangeInput
+          permissionForBackward={switchPermissionForBackward}
+          title="biography"
+          value={Db.mySelf.bio}
+          info="inform your contact from yourself with brief description"
+        />
+        )}
+        {whichFloatComponent === 'changeId' && (
+        <ProfileChangeInput
+          permissionForBackward={switchPermissionForBackward}
           title="id"
-          value="syaw0"
+          value={Db.mySelf.id}
           info="choose your username uniq
            , you can not use  symbols  , just number and english letters"
+        />
+        )}
 
-        /> */}
-        {/* <AddContact switchPermissionForBackward={switchPermissionForBackward} /> */}
       </Flex>
     </Flex>
   );

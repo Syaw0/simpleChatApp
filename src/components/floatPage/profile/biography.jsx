@@ -6,7 +6,7 @@ import Text from '../../../styles/styledComponents/text';
 function Biography({ bio, onclick }) {
   return (
     <Flex
-      onclick={onclick}
+      onClick={onclick}
       dir="column"
       css={{
       }}

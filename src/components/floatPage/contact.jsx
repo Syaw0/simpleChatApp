@@ -1,17 +1,26 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Flex from '../../styles/styledComponents/flex';
 import Avatar from '../global/avatar';
 import Text from '../../styles/styledComponents/text';
+import handleOpeningFloat from '../../utility/floatPage/handleOpeningFloat';
+import mainStore from '../../store/mainStore';
 
-function Contact() {
+function Contact({
+  avatarImg, name, lastSeen, wholeContact,
+}) {
+  const setCurrentProfile = mainStore((state) => state.setCurrentProfile);
+
   return (
-    <Flex css={{
-      padding: '$1 0',
-      borderBottom: '1px solid $onBg100',
-      '& *': {
-        cursor: 'pointer',
-      },
-    }}
+    <Flex
+      onClick={() => { handleOpeningFloat('chatAvatar'); setCurrentProfile(wholeContact); }}
+      css={{
+        padding: '$1 0',
+        borderBottom: '1px solid $onBg100',
+        '& *': {
+          cursor: 'pointer',
+        },
+      }}
     >
       <Flex css={{
         width: '15%',
@@ -20,7 +29,7 @@ function Contact() {
         <Avatar
           width="50px"
           height="50px"
-          src="https://cdn.searchenginejournal.com/wp-content/uploads/2022/04/reverse-image-search-627b7e49986b0-sej-760x400.png"
+          src={avatarImg}
         />
       </Flex>
       <Flex
@@ -34,7 +43,7 @@ function Contact() {
           color: '$onBg',
         }}
         >
-          siavash
+          {name}
         </Text>
 
         <Text css={{
@@ -42,7 +51,7 @@ function Contact() {
           color: '$onBg800',
         }}
         >
-          19 min ago
+          {lastSeen}
         </Text>
 
       </Flex>

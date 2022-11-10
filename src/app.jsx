@@ -11,8 +11,8 @@ import checkLoginSession from './utility/checkLoginSession.js';
 import Loader from './components/global/loader.jsx';
 
 function App() {
-  const [isFloatOpen, setIsFloatOpen] = useState(false);
-  const [isFirst, setIsFirst] = useState(true);
+  const isFloatOpen = mainStore((state) => state.isFloatOpen);
+  const [isFirst, setIsFirst] = useState(false);
   const isLogin = mainStore((state) => state.isLogin);
   const setLoginStatus = mainStore((state) => state.setLoginStatus);
 
@@ -22,8 +22,8 @@ function App() {
 
   const checkUserSession = async () => {
     const result = await checkLoginSession();
-    setIsFirst(false);
     if (result.status) {
+      setIsFirst(false);
       setLoginStatus(true);
     }
   };

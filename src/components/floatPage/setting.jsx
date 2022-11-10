@@ -2,6 +2,8 @@ import React from 'react';
 import IcoAppearance from '../../assest/icons/IcoAppearance';
 import IcoProfile from '../../assest/icons/IcoProfile';
 import Flex from '../../styles/styledComponents/flex';
+import handleOpeningFloat from '../../utility/floatPage/handleOpeningFloat';
+import logout from '../../utility/logout';
 import PrimaryButton from '../global/primaryButton';
 import ShadowButton from '../global/shadowButton';
 
@@ -43,7 +45,10 @@ function Setting() {
           Appearance
         </ShadowButton>
 
-        <ShadowButton id="settingShadowBtn">
+        <ShadowButton
+          id="settingShadowBtn"
+          onclick={() => { handleOpeningFloat('profileSetting'); }}
+        >
           <IcoProfile />
           Profile
         </ShadowButton>
@@ -63,18 +68,22 @@ function Setting() {
         }}
       >
 
-        <PrimaryButton>
+        <PrimaryButton
+          onclick={logout}
+        >
           Logout
         </PrimaryButton>
 
-        <PrimaryButton styles={{
-          backgroundColor: '$error',
-          border: '1px solid $error',
-          '&:hover': {
-            color: '$error',
-            backgroundColor: '$onError',
-          },
-        }}
+        <PrimaryButton
+          onclick={() => { handleOpeningFloat('assurance'); }}
+          styles={{
+            backgroundColor: '$error',
+            border: '1px solid $error',
+            '&:hover': {
+              color: '$error',
+              backgroundColor: '$onError',
+            },
+          }}
         >
           Delete Account
         </PrimaryButton>

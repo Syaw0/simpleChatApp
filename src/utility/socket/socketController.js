@@ -1,40 +1,47 @@
+/* eslint-disable class-methods-use-this */
 import mainStore from '../../store/mainStore';
 
 class SocketController {
-  constructor(socket, store) {
+  constructor(socket) {
     this.socket = socket;
     this.nodeMap = {};
-    console.log(this.nodeMap);
   }
 
   handleServerMsg(msg) {
-    const { title, data } = JSON.parse(msg.data);
-    this.nodeMap[title](data);
+    const { title } = JSON.parse(msg.data);
+    this.nodeMap[title](JSON.parse(msg.data));
   }
 
   executeStep1() {
     this.createNodeMap();
-    const data = { title: 'step1', data: document.cookie };
+    const loginUser = mainStore.getState().whoami;
+    const data = { title: 'step1', data: loginUser };
     this.socket.send(JSON.stringify(data));
   }
 
   checkStep1Response(data) {
     if (data.status) {
-      mainStore.getState().setDb(data.db);
+      this.updateDb(data.data);
       mainStore.getState().setIsDataLoaded(true);
     } else {
       mainStore.getState().setLoginStatus(false);
     }
   }
 
-  updateDb() {
-    console.log('updatedDb');
+  updateDb(newDb) {
+    mainStore.getState().setDb(newDb);
+  }
+
+  sendMsg(msg, targetId, whoami) {
+    const data = { title: 'sendMsg', data: { msg, targetId, whoami } };
+    this.socket.send(JSON.stringify(data));
   }
 
   createNodeMap() {
     this.nodeMap = {
-      Step1Response: this.checkStep1Response,
-      updateDb: this.updateDb,
+      Step1Response: this.checkStep1Response.bind(this),
+      updateDb: this.updateDb.bind(this),
+
     };
   }
 }

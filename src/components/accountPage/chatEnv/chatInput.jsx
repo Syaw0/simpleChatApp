@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IcoEmoji from '../../../assest/icons/IcoEmoji';
 import IcoFile from '../../../assest/icons/IcoFile';
 import IcoSend from '../../../assest/icons/IcoSend';
+import mainStore from '../../../store/mainStore';
 import Flex from '../../../styles/styledComponents/flex';
 import Input from '../../../styles/styledComponents/input';
 
 function ChatInput() {
+  const socketControl = mainStore((state) => state.socketControl);
+  const currentUserChat = mainStore((state) => state.currentUserChat);
+  const whoami = mainStore((state) => state.whoami);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChangeInput = (e) => {
+    setInputValue(e.target.value);
+  };
+  const handleSendButton = () => {
+    if (inputValue.trim() !== '') {
+      socketControl.sendMsg(inputValue, currentUserChat.targetId.id, whoami);
+      setInputValue('');
+    }
+  };
+
   return (
     <Flex
       justify="between"
@@ -39,6 +55,8 @@ function ChatInput() {
         placeholder="type here your message"
         as="textarea"
         type="text"
+        value={inputValue}
+        onChange={handleChangeInput}
         css={{
           width: '75%',
           height: '100%',
@@ -63,7 +81,7 @@ function ChatInput() {
 
         }}
       >
-        <IcoSend />
+        <IcoSend onclick={handleSendButton} />
       </Flex>
     </Flex>
   );

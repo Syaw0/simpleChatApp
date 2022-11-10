@@ -1,9 +1,14 @@
-const accountStore = (set, get) => ({
-    isDataLoaded: false,
-    setIsDataLoaded: (status) => {
-      set({ isDataLoaded: status });
-    },
-  });
-  
-  export default accountStore;
-  
+const accountStore = (set) => ({
+  isDataLoaded: false,
+  currentRenderedComponent: 'chatList',
+
+  setCurrentRenderedComponent: (componentName) => {
+    set({ currentRenderedComponent: componentName });
+  },
+
+  setIsDataLoaded: (status) => {
+    set({ isDataLoaded: status });
+  },
+});
+
+export default accountStore;

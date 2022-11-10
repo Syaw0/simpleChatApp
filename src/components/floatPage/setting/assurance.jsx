@@ -1,6 +1,8 @@
 import React from 'react';
 import Flex from '../../../styles/styledComponents/flex';
 import Text from '../../../styles/styledComponents/text';
+import accountDeletion from '../../../utility/accountDeletion';
+import handleOpeningFloat from '../../../utility/floatPage/handleOpeningFloat';
 import PrimaryButton from '../../global/primaryButton';
 
 function Assurance() {
@@ -34,18 +36,22 @@ function Assurance() {
           },
         }}
       >
-        <PrimaryButton>
+        <PrimaryButton
+          onclick={() => { handleOpeningFloat('Setting', true); }}
+        >
           Cancel
         </PrimaryButton>
 
-        <PrimaryButton styles={{
-          backgroundColor: '$error',
-          border: '1px solid $error',
-          '&:hover': {
-            color: '$error',
-            backgroundColor: '$onError',
-          },
-        }}
+        <PrimaryButton
+          onclick={accountDeletion}
+          styles={{
+            backgroundColor: '$error',
+            border: '1px solid $error',
+            '&:hover': {
+              color: '$error',
+              backgroundColor: '$onError',
+            },
+          }}
         >
           Delete
         </PrimaryButton>

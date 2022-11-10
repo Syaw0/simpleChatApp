@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import IcoArrowBack from '../../../assest/icons/IcoArrowBack';
 import mainStore from '../../../store/mainStore';
 import Flex from '../../../styles/styledComponents/flex';
 import Text from '../../../styles/styledComponents/text';
+import handleOpeningFloat from '../../../utility/floatPage/handleOpeningFloat';
 import Avatar from '../../global/avatar';
 
 function Info() {
-  const currentUserChat = mainStore(state=>state.currentUserChat)
-  const [isLowWidth, setIsLowWidth] = useState(false);
+  const currentUserChat = mainStore((state) => state.currentUserChat);
+  const setCurrentRenderedComponent = mainStore((state) => state.setCurrentRenderedComponent);
+  const setCurrentProfile = mainStore((state) => state.setCurrentProfile);
+
+  const handleBackToChatList = () => {
+    setCurrentRenderedComponent('chatList');
+  };
 
   return (
     <Flex css={{
@@ -24,6 +30,11 @@ function Info() {
       }}
       >
         <Avatar
+          id="chatAvatar"
+          onclick={(e) => {
+            handleOpeningFloat(e);
+            setCurrentProfile(currentUserChat.targetId);
+          }}
           width="50px"
           height="50px"
           src={currentUserChat.targetId.avatarImg}
@@ -58,28 +69,26 @@ function Info() {
           </Text>
         </Flex>
 
-        {isLowWidth && (
         <Flex
           justify="center"
           align="center"
           css={{
+
             width: 'fit-content',
             fill: '$onBg800',
+            display: 'none',
             '& svg': {
               width: '20px',
               height: '20px',
               fill: '$onBg',
             },
+            '@bp2': {
+              display: 'flex',
+            },
           }}
         >
-          <IcoArrowBack />
+          <IcoArrowBack onclick={handleBackToChatList} />
         </Flex>
-        )}
-        {/* <Text css={{
-            height:"100%"
-          }}>
-            back
-          </Text> */}
       </Flex>
     </Flex>
   );

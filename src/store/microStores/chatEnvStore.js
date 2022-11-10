@@ -1,4 +1,4 @@
-const chatEnvStore = (set, get) => ({
+const chatEnvStore = (set) => ({
   currentUserChat: {},
   setCurrentUserChat: (newChat) => {
     set({ currentUserChat: newChat });

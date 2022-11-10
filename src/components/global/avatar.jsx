@@ -3,10 +3,11 @@ import React from 'react';
 import Flex from '../../styles/styledComponents/flex';
 
 function Avatar({
-  width, height, src, onclick,
+  width, height, src, onclick, id,
 }) {
   return (
     <Flex
+      id={id}
       css={{
         width,
         height,

@@ -5,15 +5,35 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const { Server } = require('ws');
-const db = require('../src/utility/fakeDb');
+const SocketController = require('./util/socket/socketController');
+const AuthController = require('./util/auth/authController');
+const DbController = require('./Db/DbController');
 
 const wServer = new Server({ port: '9090' });
+const dbController = new DbController();
+const authController = new AuthController(dbController);
+let socketController;
 
-wServer.on('connection', (ws, req) => {
-  ws.on('message', (s) => {
-    const scheme = { title: 'Step1Response', data: { status: true, db } };
-    setTimeout(() => { ws.send(JSON.stringify(scheme)); }, 10);
+wServer.on('connection', (ws) => {
+  socketController = new SocketController(ws, dbController);
+  socketController.createNodeMap();
+
+  ws.on('close', () => {
+    console.log('closing');
   });
+
+  ws.on('message', (msg) => {
+    const data = msg.toString();
+    socketController.handleClientMsg(data);
+  });
+
+  setInterval(() => {
+    socketController.startInterval();
+  }, 2000);
+});
+
+wServer.on('close', () => {
+  console.log('closing wserver');
 });
 const app = express();
 app.use(cookieParser());
@@ -41,19 +61,40 @@ app.get('/', (req, res) => {
 });
 
 app.get('/checkSession', (req, res) => {
-  res.send({ status: false });
+  const cookie = req.cookies;
+  if (cookie.hash && cookie.username) {
+    res.send({ status: true, msg: 'session found' });
+  } else {
+    res.send({ status: false, msg: 'no session found in browser cookie' });
+  }
 });
 
-app.post('/signup', (req, res) => {
-  console.log(req.body);
-  res.send({ status: false, msg: 'error during signup' });
-  // res.send({ status: false });
+app.post('/signup', async (req, res) => {
+  const result = await authController.signup(req.body);
+  if (result.status) {
+    const hash = authController.createSessionKey(req.body);
+    res.set(
+      'Set-Cookie',
+      [`hash=${hash}; Secure ; SameSite=strict `, `username=${req.body.username} ; Secure ; SameSite=strict `],
+    );
+    res.set('Access-Control-Allow-Credential', true);
+  }
+  res.send({ status: result.status, msg: result.msg });
 });
 
-app.post('/login', (req, res) => {
-  console.log('this is cookies', req.cookies);
-  console.log(req.body);
-  res.send({ status: true, msg: 'successfully login' });
+app.post('/login', async (req, res) => {
+  const result = await authController.login(req.body);
+  if (result.status) {
+    const hash = authController.createSessionKey(req.body);
+    res.set(
+      'Set-Cookie',
+      [`hash=${hash}; Secure ; SameSite=strict `, `username=${req.body.username} ; Secure ; SameSite=strict `],
+    );
+    res.set('Access-Control-Allow-Credential', true);
+  }
+
+  res.send({ status: result.status, msg: result.msg });
+
   // res.send({ status: false });
 });
 

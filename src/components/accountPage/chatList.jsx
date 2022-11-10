@@ -6,6 +6,7 @@ import Chat from './chatList/chat';
 function ChatList() {
   const chatList = mainStore((state) => state.Db.chats);
   const mySelf = mainStore((state) => state.Db.mySelf);
+  const currentRenderedComponent = mainStore((state) => state.currentRenderedComponent);
 
   return (
     <Flex
@@ -17,7 +18,7 @@ function ChatList() {
         '@bp2': {
           width: '100%',
           padding: '$2 0',
-          display: 'none',
+          display: currentRenderedComponent === 'chatList' ? 'flex' : 'none',
         },
       }}
       justify="start"

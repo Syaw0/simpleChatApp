@@ -14,9 +14,10 @@ import mainStore from '../store/mainStore';
 function AuthPage() {
   const [inputValues, setInputValues] = useState({ username: '', password: '' });
   const [waiting, setWaiting] = useState(false);
-  const [fromType, setFromType] = useState('signup');
+  const [fromType, setFromType] = useState('login');
   const [message, setMessage] = useState({ type: '', msg: '' });
   const setLoginStatus = mainStore((state) => state.setLoginStatus);
+  const setUser = mainStore((state) => state.setUser);
 
   const usernameInputChange = (e) => {
     const { value } = e.target;
@@ -34,6 +35,7 @@ function AuthPage() {
       const result = await signup(inputValues);
       if (result.status) {
         setMessage({ type: 'success', msg: result.msg });
+        setUser(inputValues.username);
         setTimeout(() => { setLoginStatus(true); setWaiting(false); }, 2000);
       } else {
         setMessage({ type: 'error', msg: result.msg });
@@ -48,6 +50,7 @@ function AuthPage() {
       const result = await login(inputValues);
       if (result.status) {
         setMessage({ type: 'success', msg: result.msg });
+        setUser(inputValues.username);
         setTimeout(() => { setLoginStatus(true); setWaiting(false); }, 2000);
       } else {
         setMessage({ type: 'error', msg: result.msg });

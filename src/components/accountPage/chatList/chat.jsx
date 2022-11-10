@@ -10,11 +10,13 @@ function Chat({
 }) {
   const { chats } = mainStore((state) => state.Db);
   const setCurrentUserChat = mainStore((state) => state.setCurrentUserChat);
+  const setCurrentRenderedComponent = mainStore((state) => state.setCurrentRenderedComponent);
 
   const clickOnChatCallback = (e) => {
     const target = e.currentTarget.id;
     const result = chats.find((chat) => chat.targetId.id === target);
     setCurrentUserChat(result);
+    setCurrentRenderedComponent('chatEnv');
   };
 
   return (

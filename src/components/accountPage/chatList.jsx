@@ -32,7 +32,7 @@ function ChatList() {
           id={v.targetId.id}
           avatarImg={v.targetId.avatarImg}
           name={v.targetId.name}
-          lastChat={v.chatList.find((chat) => chat.index === v.chatList.length)}
+          lastChat={v.chatList[v.chatList.length - 1]}
           newMessage={v.chatList.filter((chat) => {
             if (chat.receiverId === mySelf.id) {
               if (!chat.seen) return chat;

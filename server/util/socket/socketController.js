@@ -30,6 +30,16 @@ class SocketController {
     }
   }
 
+  deleteAvatar({ id }) {
+    this.dbController.deleteAvatar(id);
+  }
+
+  addContact(data) {
+    const result = this.dbController.checkAndAddContact(data);
+    const responseData = { title: 'checkAddContact', data: result };
+    this.socket.send(JSON.stringify(responseData));
+  }
+
   handleReceivedMsg({ msg, targetId, whoami }) {
     const newMsg = new Message(msg, targetId, whoami);
     this.dbController.addMsgToDb(newMsg, targetId, whoami);
@@ -37,6 +47,30 @@ class SocketController {
 
   formatDbToSend(userDb) {
     return formatUserData(userDb, this.dbController);
+  }
+
+  changeName(data) {
+    const result = this.dbController.changeName(data);
+    const responseData = { title: 'checkAddContact', data: result };
+    this.socket.send(JSON.stringify(responseData));
+  }
+
+  changeBio(data) {
+    const result = this.dbController.changeBio(data);
+    const responseData = { title: 'checkAddContact', data: result };
+    this.socket.send(JSON.stringify(responseData));
+  }
+
+  deleteContact(data) {
+    this.dbController.deleteContact(data);
+  }
+
+  deleteChat(data) {
+    this.dbController.deleteChat(data);
+  }
+
+  createChatContainer(data) {
+    this.dbController.createChatContainer(data);
   }
 
   startInterval() {
@@ -54,6 +88,13 @@ class SocketController {
     this.nodeMap = {
       step1: this.step1Handle.bind(this),
       sendMsg: this.handleReceivedMsg.bind(this),
+      deleteAvatar: this.deleteAvatar.bind(this),
+      addContact: this.addContact.bind(this),
+      deleteContact: this.deleteContact.bind(this),
+      deleteChat: this.deleteChat.bind(this),
+      createChatContainer: this.createChatContainer.bind(this),
+      changeBio: this.changeBio.bind(this),
+      changeName: this.changeName.bind(this),
     };
   }
 }

@@ -2,9 +2,13 @@ const floatStore = (set, get) => ({
   isFloatOpen: false,
   floatTitle: '',
   whichFloatComponent: '',
-
+  responseForAddContact: { status: '', msg: '' }, // waiting , reject , success
   breadFloat: [],
   currentProfile: {},
+
+  setResponseForAddContact: (newResponse) => {
+    set({ responseForAddContact: newResponse });
+  },
 
   setCurrentProfile: (profileData) => {
     set({ currentProfile: profileData });

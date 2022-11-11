@@ -21,13 +21,16 @@ function FloatPage() {
   const floatTitle = mainStore((state) => state.floatTitle);
   const breadFloat = mainStore((state) => state.breadFloat);
   const Db = mainStore((state) => state.Db);
+  const setResponseForAddContact = mainStore((state) => state.setResponseForAddContact);
 
   const switchPermissionForBackward = (permission) => {
     setPermissionForBackward(permission);
   };
 
   const goBack = (e) => {
+    console.log(breadFloat)
     if (permissionForBackward) {
+      setResponseForAddContact({ status: '', msg: '' });
       if (breadFloat.length === 1) {
         handleOpeningFloat(breadFloat[breadFloat.length - 2], true, true);
         return;
@@ -100,7 +103,7 @@ function FloatPage() {
 
         {whichFloatComponent === 'Setting' && <Setting />}
         {whichFloatComponent === 'Contact' && <ContactsList />}
-        {whichFloatComponent === 'addContact' && <AddContact />}
+        {whichFloatComponent === 'addContact' && <AddContact permissionForBackward={switchPermissionForBackward} />}
         {whichFloatComponent === 'chatAvatar' && <Profile backwardCallback={goBack} />}
         {whichFloatComponent === 'navAvatar' && <Profile backwardCallback={goBack} />}
         {whichFloatComponent === 'assurance' && <Assurance />}

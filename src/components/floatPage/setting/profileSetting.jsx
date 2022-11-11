@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import mainStore from '../../../store/mainStore';
 import Flex from '../../../styles/styledComponents/flex';
+import Input from '../../../styles/styledComponents/input';
 import handleOpeningFloat from '../../../utility/floatPage/handleOpeningFloat';
 import Avatar from '../../global/avatar';
 import OutlinedButton from '../../global/outlinedButton';
@@ -11,12 +12,19 @@ import Name from './name';
 function ProfileSetting() {
   const [isToolTipOne, setIsToolTipOne] = useState(false);
   const Db = mainStore((state) => state.Db);
+  const socketControl = mainStore((state) => state.socketControl);
+
+  const handleFileInput = (e) => {
+    socketControl.changeAvatarImg(e.target.files[0], Db.mySelf.id);
+    setIsToolTipOne(false);
+  };
 
   const handleClickAvatar = () => {
     setIsToolTipOne(true);
   };
 
   const handleAvatarChangeClick = () => {
+    socketControl.deleteAvatarImg(Db.mySelf.id);
     setIsToolTipOne(false);
   };
 
@@ -42,7 +50,7 @@ function ProfileSetting() {
           onclick={handleClickAvatar}
           height="100px"
           width="100px"
-          src="https://cdn.searchenginejournal.com/wp-content/uploads/2022/04/reverse-image-search-627b7e49986b0-sej-760x400.png"
+          src={Db.mySelf.avatarImg}
         />
 
         {isToolTipOne && (
@@ -68,7 +76,28 @@ function ProfileSetting() {
             },
           }}
         >
-          <OutlinedButton onclick={handleAvatarChangeClick}>
+          <OutlinedButton
+            css={{
+              position: 'relative',
+              zIndex: '2',
+            }}
+          >
+            <Input
+              accept="image/*"
+              onChange={handleFileInput}
+              type="file"
+              css={{
+                opacity: '0',
+                position: 'absolute',
+                zIndex: '3',
+                cursor: 'pointer',
+                '& *': {
+                  cursor: 'pointer',
+                },
+                width: '100%',
+                height: '100%',
+              }}
+            />
             Select new avatar
           </OutlinedButton>
 
@@ -81,8 +110,9 @@ function ProfileSetting() {
       </Flex>
 
       <Name name={Db.mySelf.name} onclick={() => { handleOpeningFloat('changeName'); }} />
-      <Id id={Db.mySelf.id} onclick={() => { handleOpeningFloat('changeId'); }} />
-      <Biography bio={Db.mySelf.biography} onclick={() => { handleOpeningFloat('changeBio'); }} />
+      <Id id={Db.mySelf.id} />
+      {/* onclick={() => { handleOpeningFloat('changeId'); }} */}
+      <Biography bio={Db.mySelf.bio} onclick={() => { handleOpeningFloat('changeBio'); }} />
 
     </Flex>
   );

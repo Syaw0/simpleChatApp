@@ -9,12 +9,15 @@ import FloatPage from './pages/floatPage.jsx';
 import mainStore from './store/mainStore.js';
 import checkLoginSession from './utility/checkLoginSession.js';
 import Loader from './components/global/loader.jsx';
+import InfoBox from './components/global/infoBox.jsx';
 
 function App() {
   const isFloatOpen = mainStore((state) => state.isFloatOpen);
   const [isFirst, setIsFirst] = useState(false);
   const isLogin = mainStore((state) => state.isLogin);
   const setLoginStatus = mainStore((state) => state.setLoginStatus);
+  const isOnline = mainStore((state) => state.isOnline);
+  const setUser = mainStore((state) => state.setUser);
 
   useEffect(() => {
     checkUserSession();
@@ -23,6 +26,7 @@ function App() {
   const checkUserSession = async () => {
     const result = await checkLoginSession();
     if (result.status) {
+      setUser(result.username);
       setIsFirst(false);
       setLoginStatus(true);
     }
@@ -42,8 +46,8 @@ function App() {
       {!isFirst && !isLogin && <AuthPage />}
       {!isFirst && isLogin && <AccountPage />}
       {!isFirst && isFloatOpen && isLogin && <FloatPage />}
-
-      {isFirst && <Loader />}
+      {!isOnline && !isFirst && <InfoBox />}
+      {isFirst && isOnline && <Loader />}
     </Flex>
   );
 }

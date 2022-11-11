@@ -7,14 +7,58 @@ const x = {
       id: 'syaw',
       password: '123',
       name: 'syaw',
-      avatarImg: '',
+      avatarImg: 'http://localhost:8080/imgsyaw',
       bio: '',
       lastSeen: '19 min ago',
       contacts: ['mary'],
       chats: [
         {
           targetId: {
-            id: 'mary', name: 'mary', bio: 'helllo', avatarImg: 'https://cdn.britannica.com/94/494-004-BAA096C7/Fallow-deer.jpg', lastSeen: '19 min ago',
+            id: 'mary',
+          },
+          chatList: [
+            {
+              transfer: 'syaw', reciver: 'mary', value: 'hello marry', date: '19:00', status: '3', index: 1, seen: true,
+            },
+            {
+              transfer: 'mary', reciver: 'syaw', value: 'hello syaw', date: '19:22', status: '3', index: 2, seen: true,
+            },
+            {
+              transfer: 'mary', reciver: 'syaw', value: 'dow do you my love', date: '19:25', status: '3', index: 3, seen: true,
+            },
+          ],
+        },
+        {
+          targetId: {
+            id: 'raana',
+          },
+          chatList: [
+            {
+              transfer: 'syaw', reciver: 'raana', value: 'hello marry', date: '19:00', status: '3', index: 1, seen: true,
+            },
+            {
+              transfer: 'raana', reciver: 'syaw', value: 'hello syaw', date: '19:22', status: '3', index: 2, seen: true,
+            },
+            {
+              transfer: 'raana', reciver: 'syaw', value: 'dow do you my love', date: '19:25', status: '3', index: 3, seen: true,
+            },
+          ],
+        },
+      ],
+    },
+
+    mary: {
+      id: 'mary',
+      password: '123',
+      name: 'mary',
+      avatarImg: 'http://localhost:8080/imgmary',
+      bio: '',
+      lastSeen: '19 min ago',
+      contacts: ['syaw'],
+      chats: [
+        {
+          targetId: {
+            id: 'syaw',
           },
           chatList: [
             {
@@ -31,28 +75,28 @@ const x = {
       ],
     },
 
-    mary: {
-      id: 'mary',
+    raana: {
+      id: 'raana',
       password: '123',
-      name: 'mary',
-      avatarImg: '',
+      name: 'raana',
+      avatarImg: 'http://localhost:8080/imgraana',
       bio: '',
       lastSeen: '19 min ago',
       contacts: ['syaw'],
       chats: [
         {
           targetId: {
-            id: 'syaw', name: 'syaw', bio: 'helllo', avatarImg: 'https://cdn.britannica.com/94/494-004-BAA096C7/Fallow-deer.jpg', lastSeen: '19 min ago',
+            id: 'syaw',
           },
           chatList: [
             {
-              transfer: 'syaw', reciver: 'mary', value: 'hello marry', date: '19:00', status: '3', index: 1, seen: true,
+              transfer: 'syaw', reciver: 'raana', value: 'hello marry', date: '19:00', status: '3', index: 1, seen: true,
             },
             {
-              transfer: 'mary', reciver: 'syaw', value: 'hello syaw', date: '19:22', status: '3', index: 2, seen: true,
+              transfer: 'raana', reciver: 'syaw', value: 'hello syaw', date: '19:22', status: '3', index: 2, seen: true,
             },
             {
-              transfer: 'mary', reciver: 'syaw', value: 'dow do you my love', date: '19:25', status: '3', index: 3, seen: true,
+              transfer: 'raana', reciver: 'syaw', value: 'dow do you my love', date: '19:25', status: '3', index: 3, seen: true,
             },
           ],
         },

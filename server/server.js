@@ -8,6 +8,7 @@ const { Server } = require('ws');
 const SocketController = require('./util/socket/socketController');
 const AuthController = require('./util/auth/authController');
 const DbController = require('./Db/DbController');
+const uploadImg = require('./Db/util/uploadImg');
 
 const wServer = new Server({ port: '9090' });
 const dbController = new DbController();
@@ -31,6 +32,8 @@ wServer.on('connection', (ws) => {
     socketController.startInterval();
   }, 2000);
 });
+
+// wServer.clients.forEach(v=>{console.log(v.on)})
 
 wServer.on('close', () => {
   console.log('closing wserver');
@@ -63,7 +66,7 @@ app.get('/', (req, res) => {
 app.get('/checkSession', (req, res) => {
   const cookie = req.cookies;
   if (cookie.hash && cookie.username) {
-    res.send({ status: true, msg: 'session found' });
+    res.send({ status: true, msg: 'session found', username: cookie.username });
   } else {
     res.send({ status: false, msg: 'no session found in browser cookie' });
   }
@@ -92,10 +95,19 @@ app.post('/login', async (req, res) => {
     );
     res.set('Access-Control-Allow-Credential', true);
   }
-
   res.send({ status: result.status, msg: result.msg });
+});
 
-  // res.send({ status: false });
+app.post('/img', async (req, res) => {
+  const filePath = `${__dirname}/Db/uploads/${req.body.id}.jpg`;
+  const result = await uploadImg(req.files.file, filePath);
+  const urlPath = `http://localhost:8080/img${req.body.id}?${Math.random()}`;
+  dbController.updateAvatarImg(urlPath, req.body.id);
+  res.send({ status: result.status, msg: result.msg });
+});
+
+app.get('/img:id', async (req, res) => {
+  res.sendFile(`${__dirname}/Db/uploads/${req.params.id}.jpg`);
 });
 
 app.get('*', (req, res) => {

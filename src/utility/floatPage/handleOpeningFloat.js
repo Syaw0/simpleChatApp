@@ -18,10 +18,8 @@ const handleOpeningFloat = (e, isItBackward, isItLastOne) => {
   mainStore.getState().setFloatTitle(floatNodeName[floatType]);
   if (!isItBackward) {
     mainStore.getState().appendToBreadFloat(floatType);
-    // console.log('adding',mainStore.getState().breadFloat)
   } else {
     mainStore.getState().rmLastBread();
-    // console.log('rm',mainStore.getState().breadFloat)
   }
 };
 

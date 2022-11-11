@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import mainStore from '../../../store/mainStore';
 import Flex from '../../../styles/styledComponents/flex';
 import Text from '../../../styles/styledComponents/text';
 import handleOpeningFloat from '../../../utility/floatPage/handleOpeningFloat';
 import ErrorMessage from '../../global/ErrorMessage';
+import InfoMessage from '../../global/infoMessage';
 import Input from '../../global/input';
 import PrimaryButton from '../../global/primaryButton';
 import SuccessMessage from '../../global/successMessage';
@@ -16,33 +17,44 @@ function ProfileChangeInput({
   const [message, setMessage] = useState({ type: '', msg: '' });
   const [isWaiting, setIsWaiting] = useState(false);
   const [inputValue, setInputValue] = useState(value);
+  const responseForEditProfile = mainStore((state) => state.responseForAddContact);
+  const setResponseForEditProfile = mainStore((state) => state.setResponseForAddContact);
+  const socketControl = mainStore((state) => state.socketControl);
+  const Db = mainStore((state) => state.Db);
+
+  useEffect(() => {
+    if (responseForEditProfile.status === 'waiting') {
+      permissionForBackward(false);
+    } else {
+      if (responseForEditProfile.status === 'success') {
+        setTimeout(() => {
+          handleOpeningFloat('profileSetting', true);
+          permissionForBackward(true);
+          setResponseForEditProfile({ status: '', msg: '' });
+        }, 2000);
+        return;
+      }
+      permissionForBackward(true);
+    }
+  }, [responseForEditProfile.status]);
+
   const inputChangeCallback = (e) => {
     setInputValue(e.target.value);
   };
 
   const handleChangeClick = () => {
     if (inputValue.trim() === '') {
-      setMessage({ type: 'error', msg: 'input must have value' });
+      setResponseForEditProfile({ status: 'reject', msg: 'input must have value' });
       return;
     }
-
-    setIsWaiting(true);
-    permissionForBackward(false);
-    const result = true;
-    if (result) {
-      setMessage({ type: 'success', msg: `succussfully change your ${title}` });
-      setTimeout(() => {
-        setIsWaiting(false);
-        permissionForBackward(true);
-        handleOpeningFloat('profileSetting', true);
-      }, 2000);
+    if (title === 'name') {
+      socketControl.changeProfileName(Db.mySelf.id, inputValue);
     } else {
-      setMessage({ type: 'error', msg: 'failed durring operation...' });
-      setTimeout(() => {
-        setIsWaiting(false);
-        permissionForBackward(true);
-      }, 2000);
+      socketControl.changeProfileBio(Db.mySelf.id, inputValue);
     }
+
+    permissionForBackward(false);
+    setResponseForEditProfile({ status: 'waiting', msg: 'we are edit your profile' });
   };
 
   return (
@@ -69,7 +81,7 @@ function ProfileChangeInput({
       </Text>
 
       <Input
-        disabled={isWaiting}
+        disabled={responseForEditProfile.status === 'waiting' || responseForEditProfile.status === 'success'}
         type="text"
         value={inputValue}
         placeholder={`enter your ${title}`}
@@ -79,7 +91,7 @@ function ProfileChangeInput({
 
       <PrimaryButton
         onclick={handleChangeClick}
-        disabled={isWaiting}
+        disabled={responseForEditProfile.status === 'waiting' || responseForEditProfile.status === 'success'}
         styles={{
           padding: '$1',
         }}
@@ -89,8 +101,9 @@ function ProfileChangeInput({
         {title}
       </PrimaryButton>
 
-      {message.type === 'success' && <SuccessMessage>{message.msg}</SuccessMessage> }
-      {message.type === 'error' && <ErrorMessage>{message.msg}</ErrorMessage> }
+      {responseForEditProfile.status === 'success' && <SuccessMessage>{responseForEditProfile.msg}</SuccessMessage> }
+      {responseForEditProfile.status === 'reject' && <ErrorMessage>{responseForEditProfile.msg}</ErrorMessage> }
+      {responseForEditProfile.status === 'waiting' && <InfoMessage>{responseForEditProfile.msg}</InfoMessage> }
 
     </Flex>
   );

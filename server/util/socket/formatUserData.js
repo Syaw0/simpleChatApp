@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const formatUserData = (data, dbController) => {
   const contacts = data.contacts.map((cts) => {
     const user = dbController.findUser(cts).data;
@@ -11,6 +12,19 @@ const formatUserData = (data, dbController) => {
     return formatedData;
   });
 
+  const chatFormed = data.chats.map((chat) => {
+    const user = dbController.findUser(chat.targetId.id).data;
+    const formedData = {
+      id: user.id,
+      name: user.name,
+      bio: user.bio,
+      avatarImg: user.avatarImg,
+      lastSeen: user.lastSeen,
+    };
+    chat.targetId = { ...formedData };
+    return chat;
+  });
+
   const userData = {
     mySelf: {
       avatarImg: data.avatarImg,
@@ -22,7 +36,7 @@ const formatUserData = (data, dbController) => {
       ...contacts,
     ],
     chats: [
-      ...data.chats,
+      ...chatFormed,
     ],
   };
 

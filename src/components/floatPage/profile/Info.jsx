@@ -12,13 +12,21 @@ function Info({ name, lastSeen }) {
   const Db = mainStore((state) => state.Db);
   const isFloatOpen = mainStore((state) => state.isFloatOpen);
   const closeAndEraseFloat = mainStore((state) => state.closeAndEraseFloat);
+  const socketControl = mainStore((state) => state.socketControl);
 
   const handleChatIconClick = () => {
     const finedChat = Db.chats.find((chat) => chat.targetId.id === currentProfile.id);
-    setCurrentUserChat(finedChat);
-    setCurrentRenderedComponent('chatEnv');
-    if (isFloatOpen) {
-      closeAndEraseFloat();
+    if (finedChat) {
+      setCurrentUserChat(finedChat);
+      setCurrentRenderedComponent('chatEnv');
+      if (isFloatOpen) {
+        closeAndEraseFloat();
+      }
+    } else {
+      socketControl.createChatContainer(Db.mySelf.id, currentProfile.id);
+      if (isFloatOpen) {
+        closeAndEraseFloat();
+      }
     }
   };
 

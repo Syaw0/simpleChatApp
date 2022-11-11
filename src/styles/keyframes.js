@@ -51,6 +51,12 @@ const loaderAnimation = keyframes({
   '50%': { transform: 'scaleY(2)' },
 });
 
+const bgAnimated = keyframes({
+  '0%': { backgroundColor: '$onBg' },
+  '50%': { backgroundColor: '$onBg800' },
+  '100%': { backgroundColor: '$onBg' },
+});
+
 export {
-  fadeInToBottom, fadeOutToTop, loaderAnimation, fadeIn, fadeOut,
+  fadeInToBottom, fadeOutToTop, loaderAnimation, fadeIn, fadeOut, bgAnimated,
 };

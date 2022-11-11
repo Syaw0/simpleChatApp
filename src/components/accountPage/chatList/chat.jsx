@@ -80,7 +80,7 @@ function Chat({
             color: '$onBg800',
           }}
           >
-            {lastChat.date}
+            {lastChat !== undefined ? lastChat.date : ''}
 
           </Text>
         </Flex>
@@ -95,7 +95,7 @@ function Chat({
             width: '85%',
           }}
           >
-            {lastChat.value}
+            {lastChat !== undefined ? lastChat.value : ''}
 
           </Text>
           {newMessage.length !== 0 && (

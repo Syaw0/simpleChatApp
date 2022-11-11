@@ -36,7 +36,7 @@ function ChatContainer() {
     >
       {currentUserChat.chatList.map((chat) => (
         <Message
-          key={chat.index}
+          key={chat.index + chat.date}
           date={chat.date}
           value={chat.value}
           status={chat.status}

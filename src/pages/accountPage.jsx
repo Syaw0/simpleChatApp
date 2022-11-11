@@ -13,7 +13,6 @@ function AccountPage() {
   const isDataLoaded = mainStore((state) => state.isDataLoaded);
 
   useEffect(() => {
-    console.log('hello im here im ready to fetch data and open socket');
     openSocketAndGetData();
   }, []);
 

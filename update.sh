@@ -1,5 +1,5 @@
 #! /bin/bash
 
 
-while true ; do npm run build ; sleep 4  ; done
+while true ; do npm run build && cp -r ./dist/* ./public/  ; sleep 4  ; done
 

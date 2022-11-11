@@ -16,7 +16,7 @@ class DbController {
   }
 
   updateDb(newDb) {
-    writeFileSync(`${__dirname}/db.json`, JSON.stringify(newDb));
+    writeFileSync(`${__dirname}/db.json`, JSON.stringify(newDb, null, 4));
   }
 
   createUser(id, password) {
@@ -91,6 +91,13 @@ class DbController {
   }
 
   addMsgToDb(msg, target, sender) {
+    const checkTargetDb = Db.users[target].chats.find((chat) => chat.targetId.id === sender);
+
+    if (!checkTargetDb) {
+      const chatCon = createChatCon(sender);
+      Db.users[target].chats.push(chatCon)
+    }
+
     Db.users[target].chats.find((chat) => {
       if (chat.targetId.id === sender) {
         msg.index = chat.chatList.length + 1;

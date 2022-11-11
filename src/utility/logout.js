@@ -9,6 +9,7 @@ const logout = () => {
   mainStore.getState().setUser('');
   document.cookie = 'hash=undefined ; max-age=1 SameSite=strict ;Secure';
   document.cookie = 'username=undefined; max-age=1 SameSite=strict ;Secure';
+  mainStore.getState().socketControl.closeSocket()
 };
 
 export default logout;

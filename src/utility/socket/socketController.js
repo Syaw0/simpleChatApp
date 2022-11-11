@@ -7,6 +7,12 @@ class SocketController {
     this.nodeMap = {};
   }
 
+
+  closeSocket(){
+    console.log('closing socket');
+    this.socket.close()
+  }
+
   handleServerMsg(msg) {
     const { title } = JSON.parse(msg.data);
     this.nodeMap[title](JSON.parse(msg.data));

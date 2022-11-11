@@ -1,1 +1,174 @@
-{"users":{"syaw":{"id":"syaw","password":"123","name":"salman ben ha63","avatarImg":"http://localhost:8080/imgsyaw","bio":"man yek mosalman hastam","lastSeen":"19 min ago","contacts":["raana","mary"],"chats":[{"targetId":{"id":"mary","name":"mary","bio":"","avatarImg":"http://localhost:8080/imgmary","lastSeen":"19 min ago"},"chatList":[{"transfer":"syaw","reciver":"mary","value":"hello marry","date":"19:00","status":"3","index":1,"seen":true},{"transfer":"mary","reciver":"syaw","value":"hello syaw","date":"19:22","status":"3","index":2,"seen":true},{"transfer":"mary","reciver":"syaw","value":"dow do you my love","date":"19:25","status":"3","index":3,"seen":true},{"value":"s","reciver":"syaw","transfer":"mary","date":"23:51","index":4,"seen":false,"status":1},{"value":"s","reciver":"mary","transfer":"syaw","date":"23:51","index":5,"seen":false,"status":1},{"value":"asdda","reciver":"mary","transfer":"syaw","date":"23:52","index":6,"seen":false,"status":1},{"value":"sad","reciver":"mary","transfer":"syaw","date":"23:52","index":7,"seen":false,"status":1},{"value":"s","reciver":"syaw","transfer":"mary","date":"23:57","index":8,"seen":false,"status":1},{"value":"1213","reciver":"syaw","transfer":"mary","date":"23:58","index":9,"seen":false,"status":1},{"value":"chetori baqali?","reciver":"syaw","transfer":"mary","date":"23:58","index":10,"seen":false,"status":1},{"value":"chetori eshqam?","reciver":"syaw","transfer":"mary","date":"23:58","index":11,"seen":false,"status":1},{"value":"khobam azizam","reciver":"mary","transfer":"syaw","date":"23:59","index":12,"seen":false,"status":1},{"value":"jaaaan","reciver":"syaw","transfer":"mary","date":"23:59","index":13,"seen":false,"status":1},{"value":"miai berim qadam bezanim","reciver":"syaw","transfer":"mary","date":"0:0","index":14,"seen":false,"status":1},{"value":"arrrrre","reciver":"mary","transfer":"syaw","date":"0:0","index":15,"seen":false,"status":1}]},{"targetId":{"id":"raana","name":"raana","bio":"","avatarImg":"http://localhost:8080/imgraana","lastSeen":"19 min ago"},"chatList":[{"transfer":"syaw","reciver":"raana","value":"hello marry","date":"19:00","status":"3","index":1,"seen":true},{"transfer":"raana","reciver":"syaw","value":"hello syaw","date":"19:22","status":"3","index":2,"seen":true},{"transfer":"raana","reciver":"syaw","value":"dow do you my love","date":"19:25","status":"3","index":3,"seen":true}]}]},"mary":{"id":"mary","password":"123","name":"mary","avatarImg":"http://localhost:8080/imgmary","bio":"","lastSeen":"19 min ago","contacts":["syaw"],"chats":[{"targetId":{"id":"syaw","name":"salman ben ha63","bio":"man yek mosalman hastam","avatarImg":"http://localhost:8080/imgsyaw","lastSeen":"19 min ago"},"chatList":[{"transfer":"syaw","reciver":"mary","value":"hello marry","date":"19:00","status":"3","index":1,"seen":true},{"transfer":"mary","reciver":"syaw","value":"hello syaw","date":"19:22","status":"3","index":2,"seen":true},{"transfer":"mary","reciver":"syaw","value":"dow do you my love","date":"19:25","status":"3","index":3,"seen":true},{"value":"s","reciver":"syaw","transfer":"mary","date":"23:51","index":4,"seen":false,"status":1},{"value":"s","reciver":"mary","transfer":"syaw","date":"23:51","index":5,"seen":false,"status":1},{"value":"asdda","reciver":"mary","transfer":"syaw","date":"23:52","index":6,"seen":false,"status":1},{"value":"sad","reciver":"mary","transfer":"syaw","date":"23:52","index":7,"seen":false,"status":1},{"value":"s","reciver":"syaw","transfer":"mary","date":"23:57","index":8,"seen":false,"status":1},{"value":"1213","reciver":"syaw","transfer":"mary","date":"23:58","index":9,"seen":false,"status":1},{"value":"chetori baqali?","reciver":"syaw","transfer":"mary","date":"23:58","index":10,"seen":false,"status":1},{"value":"chetori eshqam?","reciver":"syaw","transfer":"mary","date":"23:58","index":11,"seen":false,"status":1},{"value":"khobam azizam","reciver":"mary","transfer":"syaw","date":"23:59","index":12,"seen":false,"status":1},{"value":"jaaaan","reciver":"syaw","transfer":"mary","date":"23:59","index":13,"seen":false,"status":1},{"value":"miai berim qadam bezanim","reciver":"syaw","transfer":"mary","date":"0:0","index":14,"seen":false,"status":1},{"value":"arrrrre","reciver":"mary","transfer":"syaw","date":"0:0","index":15,"seen":false,"status":1}]}]},"raana":{"id":"raana","password":"123","name":"raana","avatarImg":"http://localhost:8080/imgraana","bio":"","lastSeen":"19 min ago","contacts":["syaw"],"chats":[{"targetId":{"id":"syaw"},"chatList":[{"transfer":"syaw","reciver":"raana","value":"hello marry","date":"19:00","status":"3","index":1,"seen":true},{"transfer":"raana","reciver":"syaw","value":"hello syaw","date":"19:22","status":"3","index":2,"seen":true},{"transfer":"raana","reciver":"syaw","value":"dow do you my love","date":"19:25","status":"3","index":3,"seen":true}]}]}}}
+{
+    "users": {
+        "syaw": {
+            "id": "syaw",
+            "password": "123",
+            "name": "syaw",
+            "avatarImg": "http://localhost:8080/imgsyaw",
+            "bio": "",
+            "lastSeen": "19 min ago",
+            "contacts": [
+                "mary"
+            ],
+            "chats": [
+                {
+                    "targetId": {
+                        "id": "mary"
+                    },
+                    "chatList": [
+                        {
+                            "value": "asdasd",
+                            "reciver": "syaw",
+                            "transfer": "mary",
+                            "date": "15:49",
+                            "index": 13,
+                            "seen": false,
+                            "status": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        "mary": {
+            "id": "mary",
+            "password": "123",
+            "name": "mary2",
+            "avatarImg": "http://localhost:8080/imgmary",
+            "bio": "",
+            "lastSeen": "19 min ago",
+            "contacts": [
+                "syaw"
+            ],
+            "chats": [
+                {
+                    "targetId": {
+                        "id": "syaw",
+                        "name": "syaw",
+                        "bio": "",
+                        "avatarImg": "http://localhost:8080/imgsyaw",
+                        "lastSeen": "19 min ago"
+                    },
+                    "chatList": [
+                        {
+                            "transfer": "syaw",
+                            "reciver": "mary",
+                            "value": "hello marry",
+                            "date": "19:00",
+                            "status": "3",
+                            "index": 1,
+                            "seen": true
+                        },
+                        {
+                            "transfer": "mary",
+                            "reciver": "syaw",
+                            "value": "hello syaw",
+                            "date": "19:22",
+                            "status": "3",
+                            "index": 2,
+                            "seen": true
+                        },
+                        {
+                            "transfer": "mary",
+                            "reciver": "syaw",
+                            "value": "dow do you my love",
+                            "date": "19:25",
+                            "status": "3",
+                            "index": 3,
+                            "seen": true
+                        },
+                        {
+                            "value": "s",
+                            "reciver": "mary",
+                            "transfer": "syaw",
+                            "date": "14:47",
+                            "index": 4,
+                            "seen": false,
+                            "status": 1
+                        },
+                        {
+                            "value": "s",
+                            "reciver": "syaw",
+                            "transfer": "mary",
+                            "date": "14:47",
+                            "index": 5,
+                            "seen": false,
+                            "status": 1
+                        },
+                        {
+                            "value": "asd",
+                            "reciver": "syaw",
+                            "transfer": "mary",
+                            "date": "14:50",
+                            "index": 6,
+                            "seen": false,
+                            "status": 1
+                        },
+                        {
+                            "value": "asddas",
+                            "reciver": "syaw",
+                            "transfer": "mary",
+                            "date": "14:51",
+                            "index": 7,
+                            "seen": false,
+                            "status": 1
+                        },
+                        {
+                            "value": "asdads",
+                            "reciver": "syaw",
+                            "transfer": "mary",
+                            "date": "15:42",
+                            "index": 8,
+                            "seen": false,
+                            "status": 1
+                        },
+                        {
+                            "value": "asd",
+                            "reciver": "syaw",
+                            "transfer": "mary",
+                            "date": "15:43",
+                            "index": 9,
+                            "seen": false,
+                            "status": 1
+                        },
+                        {
+                            "value": "sadas",
+                            "reciver": "syaw",
+                            "transfer": "mary",
+                            "date": "15:49",
+                            "index": 10,
+                            "seen": false,
+                            "status": 1
+                        },
+                        {
+                            "value": "asdasd",
+                            "reciver": "mary",
+                            "transfer": "syaw",
+                            "date": "15:49",
+                            "index": 1,
+                            "seen": false,
+                            "status": 1
+                        },
+                        {
+                            "value": "saasd",
+                            "reciver": "syaw",
+                            "transfer": "mary",
+                            "date": "15:49",
+                            "index": 12,
+                            "seen": false,
+                            "status": 1
+                        },
+                        {
+                            "value": "asdasd",
+                            "reciver": "syaw",
+                            "transfer": "mary",
+                            "date": "15:49",
+                            "index": 13,
+                            "seen": false,
+                            "status": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

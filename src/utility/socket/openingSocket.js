@@ -21,6 +21,7 @@ const openingSocket = async () => {
   };
 
   webSocket.onclose = () => {
+    console.log('im closing this socket')
     mainStore.getState().setIsOnline(false);
     mainStore.getState().setInfoBoxText('you are offline');
   };

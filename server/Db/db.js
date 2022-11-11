@@ -27,23 +27,7 @@ const x = {
               transfer: 'mary', reciver: 'syaw', value: 'dow do you my love', date: '19:25', status: '3', index: 3, seen: true,
             },
           ],
-        },
-        {
-          targetId: {
-            id: 'raana',
-          },
-          chatList: [
-            {
-              transfer: 'syaw', reciver: 'raana', value: 'hello marry', date: '19:00', status: '3', index: 1, seen: true,
-            },
-            {
-              transfer: 'raana', reciver: 'syaw', value: 'hello syaw', date: '19:22', status: '3', index: 2, seen: true,
-            },
-            {
-              transfer: 'raana', reciver: 'syaw', value: 'dow do you my love', date: '19:25', status: '3', index: 3, seen: true,
-            },
-          ],
-        },
+        }
       ],
     },
 
@@ -75,33 +59,6 @@ const x = {
       ],
     },
 
-    raana: {
-      id: 'raana',
-      password: '123',
-      name: 'raana',
-      avatarImg: 'http://localhost:8080/imgraana',
-      bio: '',
-      lastSeen: '19 min ago',
-      contacts: ['syaw'],
-      chats: [
-        {
-          targetId: {
-            id: 'syaw',
-          },
-          chatList: [
-            {
-              transfer: 'syaw', reciver: 'raana', value: 'hello marry', date: '19:00', status: '3', index: 1, seen: true,
-            },
-            {
-              transfer: 'raana', reciver: 'syaw', value: 'hello syaw', date: '19:22', status: '3', index: 2, seen: true,
-            },
-            {
-              transfer: 'raana', reciver: 'syaw', value: 'dow do you my love', date: '19:25', status: '3', index: 3, seen: true,
-            },
-          ],
-        },
-      ],
-    },
   },
 };
 

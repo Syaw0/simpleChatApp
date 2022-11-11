@@ -46,7 +46,7 @@ function App() {
       {!isFirst && !isLogin && <AuthPage />}
       {!isFirst && isLogin && <AccountPage />}
       {!isFirst && isFloatOpen && isLogin && <FloatPage />}
-      {!isOnline && !isFirst && <InfoBox />}
+      {!isOnline && !isFirst && isLogin && <InfoBox />}
       {isFirst && isOnline && <Loader />}
     </Flex>
   );

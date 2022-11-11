@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import mainStore from '../../store/mainStore';
 import Flex from '../../styles/styledComponents/flex';
 import ChatContainer from './chatEnv/chatContainer';
@@ -9,6 +9,14 @@ import Info from './chatEnv/info';
 function ChatEnv() {
   const currentUserChat = mainStore((state) => state.currentUserChat);
   const currentRenderedComponent = mainStore((state) => state.currentRenderedComponent);
+  const setCurrentRenderedComponent = mainStore(state=>state.setCurrentRenderedComponent)
+
+useEffect(()=>{
+  if(currentUserChat.targetId === undefined){
+    setCurrentRenderedComponent('chatList')
+  }
+},[currentUserChat.targetId])
+
   return (
     <Flex
       css={{

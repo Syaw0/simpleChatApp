@@ -14,7 +14,7 @@ const wServer = new Server({ port: '9090' });
 const dbController = new DbController();
 const authController = new AuthController(dbController);
 let socketController;
-const socketControllerList = []
+let socketControllerList = []
 
 
 wServer.on('connection', (ws) => {
@@ -23,6 +23,7 @@ wServer.on('connection', (ws) => {
   socketController.createNodeMap();
 
   ws.on('close', () => {
+    socketControllerList = socketControllerList.filter((sc)=>sc.whoami !== socketController.whoami)
     console.log('closing');
   });
 
@@ -33,6 +34,8 @@ wServer.on('connection', (ws) => {
   setInterval(() => {
     socketControllerList.forEach((s)=>{
       s.startInterval()
+      console.log(s.whoami)
+
     });
     // socketController.startInterval();
     // wServer.clients.forEach(v=>{

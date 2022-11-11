@@ -14,9 +14,12 @@ const wServer = new Server({ port: '9090' });
 const dbController = new DbController();
 const authController = new AuthController(dbController);
 let socketController;
+const socketControllerList = []
+
 
 wServer.on('connection', (ws) => {
   socketController = new SocketController(ws, dbController);
+  socketControllerList.push(socketController)
   socketController.createNodeMap();
 
   ws.on('close', () => {
@@ -27,9 +30,14 @@ wServer.on('connection', (ws) => {
     const data = msg.toString();
     socketController.handleClientMsg(data);
   });
-
   setInterval(() => {
-    socketController.startInterval();
+    socketControllerList.forEach((s)=>{
+      s.startInterval()
+    });
+    // socketController.startInterval();
+    // wServer.clients.forEach(v=>{
+    //   console.log('im here',x) 
+    // })
   }, 2000);
 });
 
